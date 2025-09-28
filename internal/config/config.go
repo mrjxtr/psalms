@@ -2,6 +2,7 @@
 package config
 
 import (
+	"log/slog"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -13,6 +14,7 @@ type Config struct {
 }
 
 func LoadConfig() (*Config, error) {
+	slog.Info("Loading Config")
 	err := godotenv.Load()
 	if err != nil {
 		return nil, err
