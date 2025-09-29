@@ -9,8 +9,9 @@ import (
 )
 
 type Config struct {
-	Port string
-	Env  string
+	Port   string
+	Env    string
+	DBPath string
 }
 
 func LoadConfig() (*Config, error) {
@@ -21,8 +22,9 @@ func LoadConfig() (*Config, error) {
 	}
 
 	cfg := &Config{
-		Port: os.Getenv("PORT"),
-		Env:  os.Getenv("Env"),
+		Port:   os.Getenv("PORT"),
+		Env:    os.Getenv("ENV"),
+		DBPath: os.Getenv("DB_PATH"),
 	}
 	return cfg, nil
 }

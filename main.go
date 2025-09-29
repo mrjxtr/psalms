@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/mrjxtr/psalms/internal/config"
+	database "github.com/mrjxtr/psalms/internal/db"
 	"github.com/mrjxtr/psalms/internal/routes"
 )
 
@@ -23,6 +24,13 @@ func main() {
 		slog.Error("Error loading config", "error", err)
 		os.Exit(1)
 	}
+
+	db, err := database.Open(cfg.DBPath)
+	if err != nil {
+		slog.Error("Error connecting to db", "error", err)
+		os.Exit(1)
+	}
+	defer db.Close()
 
 	r, err := routes.SetupRouter()
 	if err != nil {
@@ -63,6 +71,6 @@ func main() {
 		slog.Error("Graceful shutdown failed...", "error", err)
 		os.Exit(1)
 	} else {
-		slog.Info("server gracefully stopped")
+		slog.Info("Server gracefully stopped")
 	}
 }

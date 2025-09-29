@@ -1,3 +1,16 @@
+# Environment variables
 .env
 
+# Binaries for programs and plugins
 bin/
+
+# SQLite databases + sidecars
+/database/*
+*.db
+*.sqlite
+*.sqlite3
+*.db-wal
+*.db-shm
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite-journal
